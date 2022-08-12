@@ -10,7 +10,7 @@
 			ID: {{ venue.id }}
 		</p>
 		<div class="genres">
-			{% for genre in venue.genres %}
+			{% for genre in venue.genres  %}
 			<span class="genre">{{ genre }}</span>
 			{% endfor %}
 		</div>
@@ -46,6 +46,18 @@
 		<img src="{{ venue.image_link }}" alt="Venue Image" />
 	</div>
 </div>
+<div>
+	<a href="/venues/{{ venue.id }}/edit">
+		<button class="btn btn-primary btn-lg">Edit</button>
+	</a>
+	<button
+		id="delete-venue"
+		data-id="{{ venue.id }}"
+		class="btn btn-default btn-lg"
+		>
+		Delete
+	</button>	
+</div>
 <section>
 	<h2 class="monospace">{{ venue.upcoming_shows_count }} Upcoming {% if venue.upcoming_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
 	<div class="row">
@@ -75,7 +87,20 @@
 	</div>
 </section>
 
-<a href="/venues/{{ venue.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
+
+<script>
+	const deleteBtn = document.getElementById('delete-venue')
+	deleteBtn.onclick = function(e) {
+		if(confirm('Are you sure you want to delete venue?')) {
+			const venueId = e.target.dataset.id;
+			fetch('/venues/' + venueId, {
+				method: 'DELETE'
+			}).then( function() {
+				window.location.href = '/';
+			})
+		}
+	 
+	}
+  </script>
 
 {% endblock %}
-

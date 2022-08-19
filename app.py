@@ -235,7 +235,7 @@ def delete_venue(venue_id):
     
     db.session.delete(venue)
     db.session.commit()
-    flash(venue.name + ' is successfully deleted.')
+    flash(venue.name + ' was successfully deleted.')
   except:
     db.session.rollback()
     flash('An error occurred. Venue ' + venue.name + ' is not deleted!!!')

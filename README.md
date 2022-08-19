@@ -175,9 +175,16 @@ pip install -r requirements.txt
 ```
 export FLASK_APP=myapp
 export FLASK_ENV=development # enables debug mode
-python3 app.py
+python app.py
 ```
 
-6. **Verify on the Browser**<br>
+6. **Running Migrations:**
+```
+python -m flask db init
+python -m flask db migrate
+
+```
+
+7. **Verify on the Browser**<br>
 Navigate to project homepage [http://127.0.0.1:5000/](http://127.0.0.1:5000/) or [http://localhost:5000](http://localhost:5000) 
 

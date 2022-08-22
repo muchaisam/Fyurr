@@ -180,7 +180,8 @@ def create_venue_submission():
   # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
   try:
     form = VenueForm(request.form)
-      
+    if form.validate():
+        error = False
     name = form.name.data.strip()
     city = form.city.data.strip()
     state = form.state.data.strip()
@@ -444,7 +445,8 @@ def create_artist_submission():
   # e.g., flash('An error occurred. Artist ' + data.name + ' could not be listed.')
   try:
     form = ArtistForm(request.form)
-  
+    if form.validate():
+        error = False
     name = form.name.data.strip()
     city = form.city.data.strip()
     state = form.state.data.strip()
@@ -526,7 +528,8 @@ def create_show_submission():
   # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
   try:
     form = ShowForm(request.form)
-
+    if form.validate():
+        error = False
     artist_id = int(form.artist_id.data)
     venue_id = int(form.venue_id.data)
     start_time = form.start_time.data
